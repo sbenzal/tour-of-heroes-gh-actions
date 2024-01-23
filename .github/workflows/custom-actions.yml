@@ -19,7 +19,7 @@ jobs:
       run: echo "The time was ${{ steps.hello.outputs.time }}"
     
     - name: Custom action using Docker in another repository
-      uses: returngis/custom-github-action-docker
+      uses: returngis/custom-github-action-docker@main
       id: docker-hello
       with:
         who-to-greet: "Gisela Torres"
