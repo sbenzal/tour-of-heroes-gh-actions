@@ -26,3 +26,9 @@ jobs:
 
     - name: Check the output
       run: echo "The time was ${{ steps.docker-hello.outputs.time }}"
+
+    - name: Custom action using composite type
+      uses: returngis/custom-github-action-composite@main
+      id: composite-hello
+      with:
+        who-to-greet: "Gisela Torres"
