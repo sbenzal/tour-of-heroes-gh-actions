@@ -32,3 +32,6 @@ jobs:
       id: composite-hello
       with:
         who-to-greet: "Gisela Torres"
+    
+    - name: Check the output
+      run: echo "The time was ${{ steps.composite-hello.outputs.time }}"
