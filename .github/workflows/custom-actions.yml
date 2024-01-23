@@ -9,29 +9,29 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Custom action in the same repository
+    - name: Custom action in the same repository 👇🏻📦
       id: hello
       uses: ./custom-action
       with:
         who-to-greet: "Gisela Torres"
     
-    - name: Check the output
+    - name: Check the output 📺
       run: echo "The time was ${{ steps.hello.outputs.time }}"
     
-    - name: Custom action using Docker in another repository
+    - name: Custom action using Docker 🐳 in another repository 🖕🏻📦
       uses: returngis/custom-github-action-docker@main
       id: docker-hello
       with:
         who-to-greet: "Gisela Torres"
 
-    - name: Check the output
+    - name: Check the output 📺
       run: echo "The time was ${{ steps.docker-hello.outputs.time }}"
 
-    - name: Custom action using composite type
+    - name: Custom action using composite type 📦📦 in another repository 🖕🏻📦
       uses: returngis/custom-github-action-composite@main
       id: composite-hello
       with:
         who-to-greet: "Gisela Torres"
     
-    - name: Check the output
+    - name: Check the output 📺
       run: echo "The time was ${{ steps.composite-hello.outputs.time }}"
