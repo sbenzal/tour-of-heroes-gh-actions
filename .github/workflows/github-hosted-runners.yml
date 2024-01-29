@@ -10,16 +10,19 @@ jobs:
     steps:
     - run: |
         os_version=$(cat /etc/os-release)
-        echo "🎉 This job uses Ubuntu\n $os_version"
+        echo "🎉 This job uses:"
+        echo $os_version
   windows-job:    
     runs-on: windows-latest
     steps:
-    - run:
-        $WIN_VERSION=$(systeminfo | findstr /B /C:"OS Name" /B /C:"OS Version")
-        Write-Host "🎉 This job uses Windows\n $WIN_VERSION"
+    - run: |
+        $os_version = [System.Environment]::OSVersion.Version
+        echo "🎉 This job uses:"
+        echo $os_version
   macos-job:    
     runs-on: macos-latest
     steps:
     - run: |
         sw_version=$(sw_vers)
-        echo "🎉 This job uses MacOs\n $sw_version"
+        echo "🎉 This job uses:"
+        echo $sw_version
