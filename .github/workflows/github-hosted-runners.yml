@@ -1,0 +1,19 @@
+name: GitHub-hosted runners
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  ubuntu-job:    
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "🎉 This job uses Ubuntu $(cat /etc/os-release)"
+  windows-job:    
+    runs-on: windows-latest
+    steps:
+    - run: echo "🎉 This job uses Windows " + systeminfo | findstr /B /C:"OS Name" /B /C:"OS Version"
+  macos-job:    
+    runs-on: macos-latest
+    steps:
+    - run: echo "🎉 This job uses MacOs\n$(sw_vers)"
