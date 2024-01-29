@@ -1,0 +1,17 @@
+name: Self-hosted runner demo
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+    self-hosted-runner-job:
+        runs-on: self-hosted
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+            - run: |
+                sw_version=$(sw_vers)
+                echo "🎉 This job uses:"
+                echo $sw_version
