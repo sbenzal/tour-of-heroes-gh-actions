@@ -8,12 +8,18 @@ jobs:
   ubuntu-job:    
     runs-on: ubuntu-latest
     steps:
-    - run: echo "🎉 This job uses Ubuntu $(cat /etc/os-release)"
+    - run: |
+        os_version=$(cat /etc/os-release)
+        echo "🎉 This job uses Ubuntu $os_version"
   windows-job:    
     runs-on: windows-latest
     steps:
-    - run: echo "🎉 This job uses Windows " + systeminfo | findstr /B /C:"OS Name" /B /C:"OS Version"
+    - run:
+        $WIN_VERSION=$(systeminfo | findstr /B /C:"OS Name" /B /C:"OS Version")
+        echo "🎉 This job uses Windows $WIN_VERSION"
   macos-job:    
     runs-on: macos-latest
     steps:
-    - run: echo "🎉 This job uses MacOs\n$(sw_vers)"
+    - run: |
+        sw_version=$(sw_vers)
+        echo "🎉 This job uses MacOs\n$sw_version"
