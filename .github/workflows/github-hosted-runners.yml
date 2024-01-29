@@ -16,7 +16,7 @@ jobs:
     runs-on: windows-latest
     steps:
     - run: |
-        $os_version = [System.Environment]::OSVersion.Version
+        $os_version = Get-CimInstance -ClassName Win32_OperatingSystem | Format-List Caption, Version
         echo "🎉 This job uses:"
         echo $os_version
   macos-job:    
