@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 
 services:
   app:     
@@ -18,27 +18,27 @@ services:
 
       # Use "forwardPorts" in **devcontainer.json** to forward an app port locally. 
       # (Adding the "ports" property to this file will not forward from a Codespace.)
-  # jenkins:
-  #     image: jenkins/jenkins:lts
-  #     ports:
-  #       - "8080:8080"
-  #     volumes:
-  #       - jenkins_home:/var/jenkins_home
-  self-hosted-gh-runner:
-    build:
-      context: .
-      dockerfile: Dockerfile.runner
-    environment:
-      - APP_ID=797829
-      - INSTALLATION_ID=46176535
-      - REPO=tour-of-heroes-gh-actions
-      - OWNER=returngis
-    secrets:
-      - github_app_private_key
+  jenkins:
+      image: jenkins/jenkins:lts
+      ports:
+        - "8080:8080"
+      volumes:
+        - jenkins_home:/var/jenkins_home
+  # self-hosted-gh-runner:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.runner
+  #   environment:
+  #     - APP_ID=797829
+  #     - INSTALLATION_ID=46176535
+  #     - REPO=tour-of-heroes-gh-actions
+  #     - OWNER=returngis
+  #   secrets:
+  #     - github_app_private_key
 
 volumes:
   jenkins_home:
 
-secrets:
-  github_app_private_key:
-    file: ../private-key.pem
+# secrets:
+#   github_app_private_key:
+#     file: ../private-key.pem
