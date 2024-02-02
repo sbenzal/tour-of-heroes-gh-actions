@@ -22,6 +22,13 @@ Now you can test GitHub Actions Importer.
 gh actions-importer -h
 ```
 
+Print GITHUB_TOKEN to use in the next steps:
+
+```bash
+gh auth token
+```
+
+
 # How to configure GitHub Actions and Jenkins
 
 ```bash
@@ -31,8 +38,21 @@ gh actions-importer configure
 It will ask:
 
 - Which CI providers are you configuring?: `Jenkins`
-- Personal access token for GitHub: You can ask for a token to GitHub CLI
+- Personal access token for GitHub: `Paste previously copied GITHUB_TOKEN`
 - Base url of the GitHub instance: `https://github.com`
-- Personal access token for Jenkins:
+- Personal access token for Jenkins: Profile > Configure > API Token > Generate (ex: `11c23b8096add8412cfb4b3c85a0ada753`)
 - Username of Jenkins user: gis
-- Base url of the Jenkins instance: `http://localhost:8080`
+- Base url of the Jenkins instance: `http://jenkins:8080`
+
+# Perform an audit of Jenkins
+
+First we need to fetch the latest image of github actions importer:
+
+```bash
+gh actions-importer update
+```
+
+```bash
+gh actions-importer audit jenkins --output-dir tmp/audit
+```
+
