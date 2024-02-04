@@ -2,14 +2,6 @@ pipeline {
     agent any 
 
     stages {
-        // stage('Checkout') {
-        //     steps {
-        //         echo 'Checking out..'
-        //         // Aquí puedes poner los comandos para obtener el código fuente de tu aplicación.
-        //         // Por ejemplo, si estás usando Git, podrías usar 'git clone
-        //         checkout scm
-        //     }
-        // }
         stage('Build') {
             steps {
                 echo 'Building..'
@@ -23,6 +15,7 @@ pipeline {
                 echo 'Testing..'
                 // Aquí puedes poner los comandos para probar tu aplicación.
                 // Por ejemplo, si estás usando Maven para una aplicación Java, podrías usar 'sh 'mvn test''
+                sh 'dotnet test'
             }
         }
         stage('Deploy') {
