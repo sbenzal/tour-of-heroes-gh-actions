@@ -30,6 +30,7 @@ pipeline {
                 echo 'Deploying..'
                 // Aquí puedes poner los comandos para desplegar tu aplicación.
                 // Esto dependerá mucho de tu entorno de despliegue.
+                sh 'dotnet publish -c Release -o ./publish'
             }
         }
     }
