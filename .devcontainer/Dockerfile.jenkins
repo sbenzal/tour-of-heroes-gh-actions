@@ -1,0 +1,6 @@
+FROM jenkins/jenkins:lts
+
+# RUN jenkins-plugin-cli --plugins \
+# git \
+# docker \
+# paginate-builds

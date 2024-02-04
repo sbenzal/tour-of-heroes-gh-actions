@@ -44,7 +44,7 @@ It will ask:
 - Username of Jenkins user: gis
 - Base url of the Jenkins instance: `http://jenkins:8080`
 
-# Perform an audit of Jenkins
+## Perform an audit of Jenkins
 
 First we need to fetch the latest image of github actions importer:
 
@@ -56,3 +56,20 @@ gh actions-importer update
 gh actions-importer audit jenkins --output-dir tmp/audit
 ```
 
+## Forecast the migration of Jenkins to GitHub Actions
+
+```bash
+# The 'Paginated Builds' plugin (https://plugins.jenkins.io/paginated-builds) must be installed on your Jenkins server prior to running the `forecast` command
+gh actions-importer forecast jenkins --output-dir tmp/forecast
+```
+## Dry run the migration of Jenkins to GitHub Actions
+
+```bash
+gh actions-importer dry-run jenkins --source-url http://jenkins:8080/job/job-from-jenkins --output-dir tmp/dry-run
+``` 
+
+## Migrate Jenkins to GitHub Actions
+
+```bash
+gh actions-importer migrate jenkins --source-url http://jenkins:8080/job/job-from-jenkins --output-dir tmp/migrate --target-url https://github.com/giselat_microsoft/tour-of-heroes-jenkins-demo
+```

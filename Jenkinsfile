@@ -7,6 +7,7 @@ pipeline {
                 echo 'Building..'
                 // Aquí puedes poner los comandos para construir tu aplicación.
                 // Por ejemplo, si estás usando Maven para una aplicación Java, podrías usar 'sh 'mvn compile''
+                dotnet build
             }
         }
         stage('Test') {
