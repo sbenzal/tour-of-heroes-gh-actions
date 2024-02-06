@@ -13,8 +13,3 @@ RUN wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod
     && apt-get install -y dotnet-sdk-8.0
 
 USER jenkins
-
-# RUN jenkins-plugin-cli --plugins \
-# git \
-# docker \
-# paginate-builds
