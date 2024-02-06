@@ -47,3 +47,5 @@ msbuild.wrn
 
 tmp
 .cache/*
+
+nuget.config
