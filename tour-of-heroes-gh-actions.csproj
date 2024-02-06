@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="tour-of-heroes-nuget" Version="1.0.5" />
+    <!-- <PackageReference Include="tour-of-heroes-nuget" Version="1.0.5" /> -->
   </ItemGroup>
 
 </Project>
