@@ -23,21 +23,5 @@ services:
       volumes:
         - jenkins_home:/var/jenkins_home
       restart: always
-  # self-hosted-gh-runner:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile.runner
-  #   environment:
-  #     - APP_ID=797829
-  #     - INSTALLATION_ID=46176535
-  #     - REPO=tour-of-heroes-gh-actions
-  #     - OWNER=returngis
-  #   secrets:
-  #     - github_app_private_key
-
 volumes:
   jenkins_home:
-
-# secrets:
-#   github_app_private_key:
-#     file: ../private-key.pem
