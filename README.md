@@ -71,5 +71,5 @@ gh actions-importer dry-run jenkins --source-url http://jenkins:8080/job/job-fro
 ## Migrate Jenkins to GitHub Actions
 
 ```bash
-gh actions-importer migrate jenkins --source-url http://jenkins:8080/job/job-from-jenkins --output-dir tmp/migrate --target-url https://github.com/giselat_microsoft/tour-of-heroes-jenkins-demo
+gh actions-importer migrate jenkins --source-url http://jenkins:8080/job/job-from-jenkins --output-dir tmp/migrate --target-url https://github.com/returngis/tour-of-heroes-gh-actions
 ```
