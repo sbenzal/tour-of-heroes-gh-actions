@@ -1,8 +1,9 @@
 # GitHub Actions demos
 
-Hello developer 👋, this repo contains some demos of GitHub Actions. I use this repo to test and learn about GitHub Actions.
+Hello developer 👋, this repo contains some demos around GitHub Actions.
 
-# GitHub Actions Importer
+<details>
+<summary> <h2>GitHub Actions Importer</h2></summary>
 
 First things first, let's talk about the GitHub Actions Importer. You need GitHub CLI to use this feature. In this repo, if you open it as a Dev Container, you will have GitHub CLI installed. 
 
@@ -59,9 +60,11 @@ gh actions-importer audit jenkins --output-dir tmp/audit
 ## Forecast the migration of Jenkins to GitHub Actions
 
 ```bash
-# The 'Paginated Builds' plugin (https://plugins.jenkins.io/paginated-builds) must be installed on your Jenkins server prior to running the `forecast` command
 gh actions-importer forecast jenkins --output-dir tmp/forecast
 ```
+> [!WARNING]
+> The 'Paginated Builds' plugin (https://plugins.jenkins.io/paginated-builds) must be installed on your Jenkins server prior to running the `forecast` command.
+
 ## Dry run the migration of Jenkins to GitHub Actions
 
 ```bash
@@ -73,3 +76,11 @@ gh actions-importer dry-run jenkins --source-url http://jenkins:8080/job/job-fro
 ```bash
 gh actions-importer migrate jenkins --source-url http://jenkins:8080/job/job-from-jenkins --output-dir tmp/migrate --target-url https://github.com/returngis/tour-of-heroes-gh-actions
 ```
+</details>
+
+<details>
+<summary> <h2>GitHub Packages</h2></summary>
+
+
+
+</details>
