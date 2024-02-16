@@ -10,7 +10,7 @@ jobs:
         runs-on: self-hosted
         steps:
             - name: Checkout
-              uses: actions/checkout@v1
+              uses: actions/checkout@v4
             - run: |
                 sw_version=$(sw_vers)
                 echo "🎉 This job uses:"
