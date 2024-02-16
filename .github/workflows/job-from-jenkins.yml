@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: checkout
-      uses: actions/checkout@v4.1.0
+      uses: actions/checkout@v4
     - name: echo message
       run: echo Building..
     - name: sh
@@ -17,7 +17,7 @@ jobs:
     needs: Build
     steps:
     - name: checkout
-      uses: actions/checkout@v4.1.0
+      uses: actions/checkout@v4
     - name: echo message
       run: echo Testing..
     - name: sh
@@ -28,7 +28,7 @@ jobs:
     needs: Test
     steps:
     - name: checkout
-      uses: actions/checkout@v4.1.0
+      uses: actions/checkout@v4
     - name: echo message
       run: echo Deploying..
     - name: sh
