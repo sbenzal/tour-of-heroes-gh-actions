@@ -98,4 +98,29 @@ or
 ```bash
 gh secret set SECRET_NAME < secret.txt
 ```
+
+Secrets cannot be directly referenced in if: conditionals. Instead, consider setting secrets as job-level environment variables, then referencing the environment variables to conditionally run steps in the job. 
+
+If you must pass secrets within a command line, then enclose them within the proper quoting rules. Secrets often contain special characters that may unintentionally affect your shell. To escape these special characters, use quoting with your environment variables.
+
+You can store up to 1,000 organization secrets, 100 repository secrets, and 100 environment secrets.
+
+All 100 repository secrets.
+
+If the repository is assigned access to more than 100 organization secrets, the workflow can only use the first 100 organization secrets (sorted alphabetically by secret name).
+All 100 environment secrets.
+
+Secrets are limited to 48 KB in size. To store larger secrets, see the "Storing large secrets" workaround below.
+
+### Generate a secret larger than 48KB
+
+```bash
+larger_secret=$(printf 'a%.0s' {1..49153})  # Create a string of 48KB + 1B
+echo ${#larger_secret}  # Print string lengh
+
+gh secret set LARGER_SECRET --body $larger_secret
+```
+
+To use secrets that are larger than 48 KB, you can use a workaround to store secrets in your repository and save the decryption passphrase as a secret on GitHub. For example, you can use gpg to encrypt a file containing your secret locally before checking the encrypted file in to your repository on GitHub. For more information, see the "gpg manpage."
+
 </details>
