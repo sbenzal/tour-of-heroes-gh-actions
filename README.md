@@ -79,8 +79,23 @@ gh actions-importer migrate jenkins --source-url http://jenkins:8080/job/job-fro
 </details>
 
 <details>
-<summary> <h2>GitHub Packages</h2></summary>
+  
+<summary><h2>GitHub Packages</h2></summary>
+</details>
 
+<details>
+  <summary><h2>Secrets</h2></summary>
 
+  You can create secrets at three levels: Repository, environment and organization.
 
+You can create them using the UI in your Repository > Settings or your Organization > Settings. You can also use GitHub CLI:
+
+```bash
+gh secret set SECRET_NAME
+```
+or
+
+```bash
+gh secret set SECRET_NAME < secret.txt
+```
 </details>
