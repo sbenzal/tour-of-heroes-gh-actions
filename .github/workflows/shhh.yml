@@ -25,6 +25,8 @@ jobs:
         run: echo ${{ secrets.REUSED_SECRET_NAME}}
       - name: Decrypt a secret using a secret
         run: |
-         gpg --quiet --batch --yes --decrypt --passphrase="$LARGE_SECRET_PASSPHRASE" \
-            --output $HOME/secrets/my_secret.json larger_secret.txt.gpg
+          mkdir -p $HOME/secrets
+          gpg --quiet --batch --yes --decrypt --passphrase="$LARGE_SECRET_PASSPHRASE" \
+            --output $HOME/secrets/larger_secret.txt larger_secret.txt.gpg
+          cat $HOME/secrets/larger_secret.txt
 

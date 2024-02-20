@@ -143,17 +143,20 @@ jobs:
 
 If you must pass secrets within a command line, then enclose them within the proper quoting rules. Secrets often contain special characters that may unintentionally affect your shell. To escape these special characters, use quoting with your environment variables.
 
-### Limits
-If you use the same name for a secret in a repository and an organization that the repository belongs to, the repository secret takes precedence.
+### Reusing secret names
+
+If a secret with the same name exists at multiple levels, the secret at the lowest level takes precedence.
 
 ```bash
 gh secret set REUSED_SECRET_NAME --org returngis --body 'This is a secret at organization level' --repos returngis/tour-of-heroes-gh-actions
 gh secret set REUSED_SECRET_NAME --body 'This is a secret at repository level'
 ```
 
+### Limits
+
 You can store up to 1,000 organization secrets, 100 repository secrets, and 100 environment secrets.
 
-All 100 repository secrets.
+The following limits apply to repositories:
 
 If the repository is assigned access to more than 100 organization secrets, the workflow can only use the first 100 organization secrets (sorted alphabetically by secret name).
 All 100 environment secrets.
@@ -161,6 +164,8 @@ All 100 environment secrets.
 Secrets are limited to 48 KB in size. To store larger secrets, see the "Storing large secrets" workaround below.
 
 ### Generate a secret larger than 48KB
+
+If you try to save a secret larger than 48KB, you will get an error:
 
 ```bash
 larger_secret=$(printf '🐈‍⬛%.0s' {1..49153})  # Create a string of 48KB + 1B
@@ -177,6 +182,7 @@ To use secrets that are larger than 48 KB, you can use a workaround to store sec
 echo $larger_secret > larger_secret.txt
 brew install gpg
 gpg --symmetric --cipher-algo AES256 larger_secret.txt
+rm larger_secret.txt
 ```
 
 Store your passphrase as a secret on GitHub:
