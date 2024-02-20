@@ -91,17 +91,65 @@ gh actions-importer migrate jenkins --source-url http://jenkins:8080/job/job-fro
 You can create them using the UI in your Repository > Settings or your Organization > Settings. You can also use GitHub CLI:
 
 ```bash
-gh secret set SECRET_NAME
+gh secret set MY_SECRET
 ```
 or
 
 ```bash
-gh secret set SECRET_NAME < secret.txt
+gh secret set MY_SECRET < secret.txt
 ```
 
-Secrets cannot be directly referenced in if: conditionals. Instead, consider setting secrets as job-level environment variables, then referencing the environment variables to conditionally run steps in the job. 
+Secret at organization level:
+
+```bash
+gh auth refresh -h github.com -s admin:org
+gh secret set SECRET_FOR_ORG --org returngis --body 'This is a secret for the organization' --repos returngis/tour-of-heroes-gh-actions
+```
+
+- Be careful with the content of the secret. If you use JSON it will be printed
+
+```bash
+gh secret set JSON_SECRET --body '{"secret": "Hello World this is a secret!"}'
+```
+
+- Secrets cannot be directly referenced in if: conditionals. Instead, consider setting secrets as job-level environment variables, then referencing the environment variables to conditionally run steps in the job.
+
+```bash
+gh secret set SECRET_FOR_IF --body 'true'
+```
+
+```yaml{111}
+name: Secrets
+
+on:
+  workflow_dispatch:
+
+env:
+  CHECK_SECRET: ${{ secrets.SECRET_FOR_IF}}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: My first secret
+        run: echo ${{ secrets.MY_SECRET}}
+      - name: Json secret
+        run: echo ${{ secrets.JSON_SECRET}}
+      - name: Check secret
+        if: env.CHECK_SECRET == 'true'
+```
 
 If you must pass secrets within a command line, then enclose them within the proper quoting rules. Secrets often contain special characters that may unintentionally affect your shell. To escape these special characters, use quoting with your environment variables.
+
+### Limits
+If you use the same name for a secret in a repository and an organization that the repository belongs to, the repository secret takes precedence.
+
+```bash
+gh secret set REUSED_SECRET_NAME --org returngis --body 'This is a secret at organization level' --repos returngis/tour-of-heroes-gh-actions
+gh secret set REUSED_SECRET_NAME --body 'This is a secret at repository level'
+```
 
 You can store up to 1,000 organization secrets, 100 repository secrets, and 100 environment secrets.
 

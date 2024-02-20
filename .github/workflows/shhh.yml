@@ -7,9 +7,9 @@ env:
   CHECK_SECRET: ${{ secrets.SECRET_FOR_IF}}
 
 jobs:
-  build:
+  testing_secrets:
+    name: Testing secrets
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
       - name: My first secret
@@ -18,11 +18,9 @@ jobs:
         run: echo ${{ secrets.JSON_SECRET}}
       - name: Check secret
         if: env.CHECK_SECRET == 'true'
-        run: echo $CHECK_SECRET
+        run: The secret has true value
       - name: Secret at org level
         run: echo ${{ secrets.SECRET_FOR_ORG}}
-      - name: Secret at repo level
-        run: echo ${{ secrets.SECRET_FOR_REPO}}
       - name: If a secret with the same name exists at multiple levels, the secret at the lowest level takes precedence
         run: echo ${{ secrets.REUSED_SECRET_NAME}}
       - name: Decrypt a secret using a secret
