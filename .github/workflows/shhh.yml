@@ -26,7 +26,7 @@ jobs:
       - name: Decrypt a secret using a secret
         run: |
           mkdir -p $HOME/secrets
-          gpg --quiet --batch --yes --decrypt --passphrase="$LARGE_SECRET_PASSPHRASE" \
+          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.LARGE_SECRET_PASSPHRASE }}" \
             --output $HOME/secrets/larger_secret.txt larger_secret.txt.gpg
           cat $HOME/secrets/larger_secret.txt
 
