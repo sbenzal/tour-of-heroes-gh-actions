@@ -190,4 +190,28 @@ Store your passphrase as a secret on GitHub:
 ```bash
 gh secret set LARGE_SECRET_PASSPHRASE
 ```
+
+### Store binary secrets
+
+You can store binary secrets in a repository secret. For example, you can store a binary file, such as a certificate or a key, as a secret.
+
+Let's create a certificate and store it as a secret:
+
+```bash
+openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes -subj "/C=US/ST=New York/L=Brooklyn/O=Example Brooklyn Company/CN=www.examplebrooklyn.com"
+openssl x509 -outform der -in cert.pem -out cert.der
+```
+
+Now transform the certificate to base64:
+
+```bash
+base64 -i cert.der -o cert.base64
+```
+
+And store it as a secret:
+
+```bash
+gh secret set BASE64_CERTIFICATE < cert.base64
+```
+
 </details>

@@ -29,4 +29,12 @@ jobs:
           gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.LARGE_SECRET_PASSPHRASE }}" \
             --output $HOME/secrets/larger_secret.txt larger_secret.txt.gpg
           cat $HOME/secrets/larger_secret.txt
+      - name: Retrieve the secret and decode it to a file
+        env:
+          CERTIFICATE_BASE64: ${{ secrets.BASE64_CERTIFICATE }}
+        run: |
+          echo $CERTIFICATE_BASE64 | base64 --decode > cert.der
+      - name: Show certificate information
+        run: |
+          openssl x509 -in cert.der -inform DER -text -noout
 
