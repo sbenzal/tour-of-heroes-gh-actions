@@ -198,7 +198,7 @@ You can store binary secrets in a repository secret. For example, you can store 
 Let's create a certificate and store it as a secret:
 
 ```bash
-openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes -subj "/C=US/ST=New York/L=Brooklyn/O=Example Brooklyn Company/CN=www.examplebrooklyn.com"
+openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes -subj "/C=ES/ST=Madrid/L=Madrid/O=return(GiS);/CN=www.returngis.net"
 openssl x509 -outform der -in cert.pem -out cert.der
 ```
 
@@ -212,6 +212,13 @@ And store it as a secret:
 
 ```bash
 gh secret set BASE64_CERTIFICATE < cert.base64
+```
+
+Delete all secrets
+
+```bash
+# Iterate over all secrets and delete them
+gh secret list --json name | jq -r '.[] | .name' | xargs -I {} gh secret delete {}
 ```
 
 </details>
