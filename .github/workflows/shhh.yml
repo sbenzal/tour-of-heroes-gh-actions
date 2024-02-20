@@ -18,7 +18,7 @@ jobs:
         run: echo ${{ secrets.JSON_SECRET}}
       - name: Check secret
         if: env.CHECK_SECRET == 'true'
-        run: The secret has true value
+        run: echo "The secret has true value"
       - name: Secret at org level
         run: echo ${{ secrets.SECRET_FOR_ORG}}
       - name: If a secret with the same name exists at multiple levels, the secret at the lowest level takes precedence
