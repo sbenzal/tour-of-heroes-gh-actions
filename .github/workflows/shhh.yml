@@ -11,3 +11,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: My first secret
         run: echo ${{ secrets.MY_SECRET }}
+      - name: If a secret with the same name exists at multiple levels, the secret at the lowest level takes precedence
+        run: echo ${{ secrets.REUSED_SECRET_NAME }}
