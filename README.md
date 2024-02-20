@@ -121,24 +121,29 @@ gh secret set SECRET_FOR_IF --body 'true'
 ```yaml{111}
 name: Secrets
 
+name: Secrets
+
 on:
   workflow_dispatch:
 
 env:
-  CHECK_SECRET: ${{ secrets.SECRET_FOR_IF}}
+  CHECK_SECRET: ${{ secrets.CHECK_SECRET}}
 
 jobs:
-  build:
+  testing_secrets:
+    name: Testing secrets
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
       - name: My first secret
-        run: echo ${{ secrets.MY_SECRET}}
-      - name: Json secret
-        run: echo ${{ secrets.JSON_SECRET}}
+        run: echo ${{ secrets.MY_SECRET }}
+      - name: My org secret
+        run: echo ${{ secrets.SECRET_FOR_ORG }} 
+      - name: If a secret with the same name exists at multiple levels, the secret at the lowest level takes precedence
+        run: echo ${{ secrets.REUSED_SECRET_NAME }} 
       - name: Check secret
         if: env.CHECK_SECRET == 'true'
+        run: echo "The secret has false value"
 ```
 
 If you must pass secrets within a command line, then enclose them within the proper quoting rules. Secrets often contain special characters that may unintentionally affect your shell. To escape these special characters, use quoting with your environment variables.
