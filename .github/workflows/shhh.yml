@@ -20,4 +20,4 @@ jobs:
         run: echo ${{ secrets.REUSED_SECRET_NAME }} 
       - name: Check secret
         if: env.CHECK_SECRET == 'true'
-        run: echo "The secret has true value"
+        run: echo "The secret has false value"
