@@ -15,7 +15,7 @@ updates:
       interval: "daily"
 
 registries:
-  nuget-config:
+  github:
     type: nuget-feed
     url: "https://nuget.pkg.github.com/returngis/index.json"
     username: 0gis0
