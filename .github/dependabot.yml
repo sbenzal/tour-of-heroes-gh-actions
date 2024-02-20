@@ -18,5 +18,5 @@ registries:
   nuget-config:
     type: nuget-feed
     url: "https://nuget.pkg.github.com/returngis/index.json"
-    username: returngis
+    username: 0gis0
     password: ${{ secrets.NUGET_PAT }}
