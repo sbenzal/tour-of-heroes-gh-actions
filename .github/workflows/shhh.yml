@@ -21,3 +21,9 @@ jobs:
       - name: Check secret
         if: env.CHECK_SECRET == 'true'
         run: echo "The secret has false value"
+      - name: Decrypt a secret using a secret
+        run: |
+          mkdir -p $HOME/secrets
+          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.LARGE_SECRET_PASSPHRASE }}" \
+            --output $HOME/secrets/larger_secret.txt secret.txt.gpg
+          cat $HOME/secrets/larger_secret.txt

@@ -176,7 +176,7 @@ If you try to save a secret larger than 48KB, you will get an error:
 larger_secret=$(printf '🐈‍⬛%.0s' {1..49153})  # Create a string of 48KB + 1B
 echo ${#larger_secret}  # Print string lengh
 
-gh secret set LARGER_SECRET --body $larger_secret
+gh secret set LARGER_SECRET --body $(printf '🐈‍⬛%.0s' {1..49153})
 ```
 
 ### Storing large secrets
@@ -184,9 +184,9 @@ gh secret set LARGER_SECRET --body $larger_secret
 To use secrets that are larger than 48 KB, you can use a workaround to store secrets in your repository and save the decryption passphrase as a secret on GitHub. For example, you can use gpg to encrypt a file containing your secret locally before checking the encrypted file in to your repository on GitHub. For more information, see the "gpg manpage."
 
 ```bash
-echo $larger_secret > larger_secret.txt
+echo $larger_secret > secret.txt
 brew install gpg
-gpg --symmetric --cipher-algo AES256 larger_secret.txt
+gpg --symmetric --cipher-algo AES256 secret.txt
 rm larger_secret.txt
 ```
 
