@@ -3,6 +3,9 @@ name: Secrets
 on:
   workflow_dispatch:
 
+env:
+  CHECK_SECRET: ${{ secrets.CHECK_SECRET}}
+
 jobs:
   testing_secrets:
     name: Testing secrets
@@ -11,3 +14,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: My first secret
         run: echo ${{ secrets.MY_SECRET }}
+      - name: My org secret
+        run: echo ${{ secrets.SECRET_FOR_ORG }} 
+      - name: If a secret with the same name exists at multiple levels, the secret at the lowest level takes precedence
+        run: echo ${{ secrets.REUSED_SECRET_NAME }} 
+      - name: Check secret
+        if: env.CHECK_SECRET == 'true'
+        run: echo "The secret has true value"
