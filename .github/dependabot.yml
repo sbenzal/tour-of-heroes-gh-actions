@@ -14,9 +14,9 @@ updates:
     schedule:
       interval: "daily"
 
-registries:
-  github:
-    type: nuget-feed
-    url: "https://nuget.pkg.github.com/returngis/index.json"
-    username: 0gis0
-    password: ${{ secrets.NUGET_PAT }}
+# registries:
+#   github:
+#     type: nuget-feed
+#     url: "https://nuget.pkg.github.com/returngis/index.json"
+#     username: 0gis0
+#     password: ${{ secrets.NUGET_PAT }}
