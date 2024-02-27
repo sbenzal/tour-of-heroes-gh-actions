@@ -21,7 +21,7 @@ jobs:
       run: |
         echo "The greeting was ${{ inputs.greeting }}"
         echo "The secret was ${{ secrets.MY_SECRET }}"
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
