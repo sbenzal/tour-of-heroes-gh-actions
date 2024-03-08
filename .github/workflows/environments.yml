@@ -7,22 +7,29 @@ on:
 jobs:
 
   deploy-dev:
-    environment: dev
+    environment: 
+        name: dev
+        url: https://dev.example.com
+
     runs-on: ubuntu-latest
     steps:
       - run: |          
           echo "🎉 This is a variable for dev environment only: ${{ vars.SOME_VARIABLE }}"          
   deploy-staging:
     needs: deploy-dev
-    environment: staging
+    environment: 
+        name: staging
+        url: https://staging.example.com
     runs-on: ubuntu-latest
     steps:
       - run: |
             echo "🎉 This is a variable for staging environment only: ${{ vars.SOME_VARIABLE }}"
   deploy-prod:
     needs: deploy-staging
-    environment: prod
-    runs-on: windows-latest
+    environment: 
+        name: prod
+        url: https://example.com
+    runs-on: ubuntu-latest
     steps:
       - run: |
             echo "🎉 This is a variable for production environment only: ${{ vars.SOME_VARIABLE }}"
