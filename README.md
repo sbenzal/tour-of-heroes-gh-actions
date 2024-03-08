@@ -227,3 +227,10 @@ gh secret list --json name | jq -r '.[] | .name' | xargs -I {} gh secret delete 
 ```
 
 </details>
+
+<details>
+<summary> <h2>Working with Environments</h2></summary>
+
+Environments are a way to group secrets and to control the environment for an action. You can use environments to require approval for deployments to production, or to run a workflow against a different set of secrets.
+
+</details>
