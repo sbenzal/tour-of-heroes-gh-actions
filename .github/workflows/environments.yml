@@ -1,0 +1,26 @@
+name: Environments demo
+on:
+  workflow_dispatch:
+#   push:
+#     branches: [main]
+
+jobs:
+
+  deploy-dev:
+    environment: dev
+    runs-on: ubuntu-latest
+    steps:
+      - run: |          
+          echo "🎉 This is a variable for dev environment only: ${{ vars.SOME_VARIABLE }}"          
+  deploy-staging:
+    environment: staging
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+            echo "🎉 This is a variable for staging environment only: ${{ vars.SOME_VARIABLE }}"
+  deploy-prod:
+    environment: prod
+    runs-on: windows-latest
+    steps:
+      - run: |
+            echo "🎉 This is a variable for production environment only: ${{ vars.SOME_VARIABLE }}"
