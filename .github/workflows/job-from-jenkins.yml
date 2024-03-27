@@ -2,35 +2,74 @@ name: job-from-jenkins
 on:
   workflow_dispatch:
 jobs:
-  Build:
+  Preparation:
     runs-on: ubuntu-latest
     steps:
     - name: checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4.1.0
     - name: echo message
-      run: echo Building..
+      run: echo Realizando preparativos...
     - name: sh
       shell: bash
-      run: dotnet build
+      run: echo "Clonando repositorio..."
+    - name: sh
+      shell: bash
+      run: echo "Instalando dependencias..."
+  Build:
+    runs-on: ubuntu-latest
+    needs: Preparation
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4.1.0
+    - name: echo message
+      run: echo Iniciando la construcciÃ³n...
+    - name: sh
+      shell: bash
+      run: echo "Compilando cÃ³digo..."
+    - name: sh
+      shell: bash
+      run: echo "Empaquetando artefactos..."
   Test:
     runs-on: ubuntu-latest
     needs: Build
     steps:
     - name: checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4.1.0
     - name: echo message
-      run: echo Testing..
+      run: echo Iniciando pruebas...
     - name: sh
       shell: bash
-      run: dotnet test
+      run: echo "Ejecutando pruebas unitarias..."
+    - name: sh
+      shell: bash
+      run: echo "Generando informe de cobertura..."
   Deploy:
     runs-on: ubuntu-latest
     needs: Test
     steps:
     - name: checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4.1.0
     - name: echo message
-      run: echo Deploying..
+      run: echo Iniciando despliegue...
     - name: sh
       shell: bash
-      run: dotnet publish -c Release -o ./publish
+      run: echo "Desplegando en servidor de pruebas..."
+    - name: sh
+      shell: bash
+      run: echo "Verificando integridad de despliegue..."
+    - name: sh
+      shell: bash
+      run: echo "Notificando resultado del despliegue..."
+  Post-Build:
+    if: always()
+    name: Post Build
+    runs-on: ubuntu-latest
+    needs:
+    - Preparation
+    - Build
+    - Test
+    - Deploy
+    steps:
+    - name: echo message
+      run: echo Finalizando pipeline...
+      if: always()
