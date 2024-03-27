@@ -1,30 +1,44 @@
 pipeline {
-    agent any 
+    agent any
 
     stages {
+        stage('Preparation') {
+            steps {
+                echo 'Realizando preparativos...'
+                sh 'echo "Clonando repositorio..."'
+                sh 'echo "Instalando dependencias..."'
+            }
+        }
+
         stage('Build') {
             steps {
-                echo 'Building..'
-                // Aquí puedes poner los comandos para construir tu aplicación.
-                // Por ejemplo, si estás usando Maven para una aplicación Java, podrías usar 'sh 'mvn compile''
-                sh 'dotnet build'              
+                echo 'Iniciando la construcción...'
+                sh 'echo "Compilando código..."'
+                sh 'echo "Empaquetando artefactos..."'
             }
         }
+
         stage('Test') {
             steps {
-                echo 'Testing..'
-                // Aquí puedes poner los comandos para probar tu aplicación.
-                // Por ejemplo, si estás usando Maven para una aplicación Java, podrías usar 'sh 'mvn test''
-                sh 'dotnet test'
+                echo 'Iniciando pruebas...'
+                sh 'echo "Ejecutando pruebas unitarias..."'
+                sh 'echo "Generando informe de cobertura..."'
             }
         }
+
         stage('Deploy') {
             steps {
-                echo 'Deploying..'
-                // Aquí puedes poner los comandos para desplegar tu aplicación.
-                // Esto dependerá mucho de tu entorno de despliegue.
-                sh 'dotnet publish -c Release -o ./publish'
+                echo 'Iniciando despliegue...'
+                sh 'echo "Desplegando en servidor de pruebas..."'
+                sh 'echo "Verificando integridad de despliegue..."'
+                sh 'echo "Notificando resultado del despliegue..."'
             }
+        }
+    }
+
+    post {
+        always {
+            echo 'Finalizando pipeline...'
         }
     }
 }
